@@ -1,0 +1,42 @@
+<html>
+  <head>
+    <title>traffic</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="static/bootstrap.min.css" rel="stylesheet" media="screen">
+    <style>
+      body{
+              background-color: rgb(234, 241, 241);
+              background-image: url("https://images.theconversation.com/files/304343/original/file-20191128-178135-10fwswo.jpg?ixlib=rb-1.1.0&rect=0%2C0%2C1349%2C665&q=45&auto=format&w=1356&h=668&fit=crop");
+                background-repeat: no-repeat, repeat;
+      }
+  </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1 style="margin-left: 25%;">Input data and get the predicted traffic status</h1>
+      <br>
+      <form action="" method="post">
+        <input type="text" placeholder="Road" name="road_id" value="{{
+          request.form.road_id }}"> <br>
+         <input type="text" placeholder="Direction" name="direction" value="{{
+          request.form.direction }}"> <br>
+        <input type="text" placeholder="Day of Week(ISO Format)" name="dayOfWeek" value="{{
+          request.form.dayOfWeek }}"> <br>
+         <input type="text" placeholder="Time of Day(24:00:00)" name="timeOfDay" value="{{
+          request.form.timeOfDay }}"> <br>
+        <input class="btn btn-default" type="submit" value="Predict">
+      </form>
+      {% if response %}
+        <p class="response"> {{ response }}
+      {% endif %}
+    <br><br>
+    <a style="margin-left: 5%; margin-top: 85%; color: rgb(13, 15, 13);" href="/insert_ui"><button>Insert new traffic data record and trigger the training process</button></a>
+    <br>
+    <a style="margin-left: 5%; margin-top: 85%; color: rgb(13, 15, 13);" href="/clear"><button>Clear all traffic data records</button></a>
+    </div>
+<p>ROADS : national highway tags ranging from 1 to 87 and number can be given<br>
+   DIRECTIONS : Represents the East-1,West-2,North-3,South-4,NE-5,NW-6,SE-7,SW-8<br>
+   traffic_status: Represents the incoming(1) and outgoing(2)<br>
+</p>
+  </body>
+</html>
